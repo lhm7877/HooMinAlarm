@@ -1,10 +1,12 @@
 package com.hoomin.hoominalarm;
 
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,8 +31,15 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ListItemViewHolder
     }
 
     @Override
-    public void onBindViewHolder(ListItemViewHolder holder, int position) {
-        holder.tv_time.setText(rvDatas.get(position).textTime);
+    public void onBindViewHolder(final ListItemViewHolder holder, int position) {
+        holder.item_tv_time.setText(rvDatas.get(position).textTime);
+        holder.item_linearLayouot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),ManageAlarmActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -38,11 +47,18 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ListItemViewHolder
         return rvDatas.size();
     }
 
-    public static class ListItemViewHolder extends RecyclerView.ViewHolder{
-        public TextView tv_time;
+    public static class ListItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public TextView item_tv_time;
+        public LinearLayout item_linearLayouot;
         public ListItemViewHolder(View itemView) {
             super(itemView);
-            tv_time = (TextView)itemView.findViewById(R.id.tv_time);
+            item_tv_time = (TextView)itemView.findViewById(R.id.item_tv_time);
+            item_linearLayouot = (LinearLayout)itemView.findViewById(R.id.item_linearLayouot);
+        }
+
+        @Override
+        public void onClick(View v) {
+
         }
     }
 }

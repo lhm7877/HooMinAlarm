@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">HooMinAlarm</string>
+    <string name="app_name">후민알람</string>
+    <string name="yes">확인</string>
+    <string name="no">취소</string>
+    <string name="cb_monday">월요일</string>
+    <string name="cb_tuesday">화요일</string>
+    <string name="cb_wednesday">수요일</string>
+    <string name="cb_thursday">목요일</string>
+    <string name="cb_friday">금요일</string>
+    <string name="cb_saturday">토요일</string>
+    <string name="cb_sunday">일요일</string>
+
+    <string name="repeat">반복</string>
+
+    <string-array name="dayofweek">
+        <item>일요일</item>
+        <item>월요일</item>
+        <item>화요일</item>
+        <item>수요일</item>
+        <item>목요일</item>
+        <item>금요일</item>
+        <item>토요일</item>
+    </string-array>
 </resources>
