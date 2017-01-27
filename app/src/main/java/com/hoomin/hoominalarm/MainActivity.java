@@ -9,8 +9,12 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView rv_main;
+    @BindView(R.id.rv_main)
+    protected RecyclerView rv_main;
+
     private RecyclerView.Adapter rv_adapter;
     private RecyclerView.LayoutManager rv_layoutManager;
     private ArrayList<RVData> rvDatas;
@@ -19,8 +23,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        rv_main = (RecyclerView)findViewById(R.id.rv_main);
 
         //TODO: setHasFixedSize 이유?
         rv_main.setHasFixedSize(true);

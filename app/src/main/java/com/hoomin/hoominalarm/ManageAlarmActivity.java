@@ -13,19 +13,27 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
+import butterknife.BindView;
+import io.realm.Realm;
+
 public class ManageAlarmActivity extends AppCompatActivity {
-    private LinearLayout ll_repeat;
-    private TextView tv_repeat;
+    @BindView(R.id.ll_repeat)
+    protected LinearLayout ll_repeat;
+    @BindView(R.id.tv_repeat)
+    protected TextView tv_repeat;
+    @BindView(R.id.btn_accept)
+    protected Button btn_accept;
+    @BindView(R.id.btn_cancle)
+    protected Button btn_cancle;
+
+    //일주일을 이진수로 표현
     private int[] dayOfWeek = {1,2,4,8,16,32,64};
-    private Button btn_accept, btn_cancle;
+
+    private Realm mRealm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_alarm);
-
-        tv_repeat = (TextView)findViewById(R.id.tv_repeat);
-        btn_accept = (Button)findViewById(R.id.btn_accept);
-        btn_cancle = (Button)findViewById(R.id.btn_cancle);
 
         clickRepeatLayout();
         btn_accept.setOnClickListener(new View.OnClickListener() {

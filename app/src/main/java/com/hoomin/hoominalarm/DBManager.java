@@ -3,7 +3,7 @@ package com.hoomin.hoominalarm;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
+//TODO : sqlite 안씀
 /**
  * Created by Hooo on 2017-01-25.
  */
