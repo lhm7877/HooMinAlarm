@@ -13,8 +13,8 @@ public class Repo extends RealmObject {
     private int _id;
     private int hour;
     private int minutes;
-    private int daysOfWeek;
-    private boolean ebabled;
+    private int dayOfWeek;
+    private boolean enabled;
     private int vibrate;
     private String message;
 
@@ -42,20 +42,20 @@ public class Repo extends RealmObject {
         this.minutes = minutes;
     }
 
-    public int getDaysOfWeek() {
-        return daysOfWeek;
+    public int getDayOfWeek() {
+        return dayOfWeek;
     }
 
-    public void setDaysOfWeek(int daysOfWeek) {
-        this.daysOfWeek = daysOfWeek;
+    public void setDayOfWeek(int daysOfWeek) {
+        this.dayOfWeek = daysOfWeek;
     }
 
-    public boolean isEbabled() {
-        return ebabled;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setEbabled(boolean ebabled) {
-        this.ebabled = ebabled;
+    public void setEnabled(boolean ebabled) {
+        this.enabled = ebabled;
     }
 
     public int getVibrate() {
