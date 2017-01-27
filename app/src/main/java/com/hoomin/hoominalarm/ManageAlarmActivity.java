@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.realm.Realm;
 
 public class ManageAlarmActivity extends AppCompatActivity {
@@ -34,11 +35,13 @@ public class ManageAlarmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_alarm);
+        ButterKnife.bind(this);
 
         clickRepeatLayout();
         btn_accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                updateDB();
                 finish();
             }
         });
@@ -50,6 +53,12 @@ public class ManageAlarmActivity extends AppCompatActivity {
         });
 
     }
+
+    private void updateDB(){
+
+    }
+
+    //언제 반복할지 정하는 레이아웃 클릿
     private void clickRepeatLayout(){
         final Resources res = getResources();
 
