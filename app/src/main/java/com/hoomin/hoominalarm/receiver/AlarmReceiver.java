@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -12,6 +13,8 @@ import com.hoomin.hoominalarm.AlarmUtils;
 import com.hoomin.hoominalarm.Repo;
 
 import java.util.Calendar;
+
+import io.realm.Realm;
 
 import static com.hoomin.hoominalarm.UIUtils.DAYOFWEEK;
 
@@ -27,9 +30,13 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Intent startIntent = new Intent(context, AlarmActivity.class);
         startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Repo repo = (Repo) intent.getSerializableExtra("alarm");
-        startIntent.putExtra("alarm", repo);
 
+        Realm mRealm = Realm.getDefaultInstance();
+        Repo repo = mRealm.where(Repo.class).equalTo("_id", intent.getIntExtra("alarm",0)).findFirst();
+
+        startIntent.putExtra("alarm", repo.get_id());
+
+        Log.i("myBoot", String.valueOf(repo.getDayOfWeek()));
         int dayOfWeek = repo.getDayOfWeek();
 
         Calendar cal = Calendar.getInstance();
@@ -43,11 +50,12 @@ public class AlarmReceiver extends BroadcastReceiver {
             if ((dayOfWeek & DAYOFWEEK[cal.get(Calendar.DAY_OF_WEEK) - 1]) != 0) {
                 //알람이 울린다.
                 context.startActivity(startIntent);
-                AlarmUtils.addAlarm(context, repo);
+                AlarmUtils.addAlarm(context, repo.get_id());
             }
 
         } else {
             Log.i("mylog","dayOfWeek가 0일때");
+            AlarmUtils.addAlarm(context, repo.get_id());
             context.startActivity(startIntent);
         }
 

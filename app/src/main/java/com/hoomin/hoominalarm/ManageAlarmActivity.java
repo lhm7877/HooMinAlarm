@@ -161,7 +161,7 @@ public class ManageAlarmActivity extends AppCompatActivity {
 
         //TODO : 알람 설정
 //        AlarmUtils.addAlarm(this,id,mHour,mMinute,currentCheck[0]);
-        AlarmUtils.addAlarm(this,repo);
+        AlarmUtils.addAlarm(this,repo.get_id());
     }
 
     //언제 반복할지 정하는 레이아웃 클릿

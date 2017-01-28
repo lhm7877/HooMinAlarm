@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.hoomin.hoominalarm.receiver.AlarmReceiver;
@@ -57,9 +59,43 @@ public class AlarmUtils {
         Toast.makeText(context, String.valueOf(id), Toast.LENGTH_SHORT).show();
     }
 
-    public static void addAlarm(Context context, Repo repo) {
+//    public static void addAlarm(Context context, Repo repo) {
+//        Log.i("myBoot", String.valueOf(repo.get_id()));
+//        Intent alarmIntent = new Intent(context, AlarmReceiver.class);
+//        alarmIntent.putExtra("alarm", repo);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, repo.get_id(), alarmIntent, 0);
+//
+//        Calendar now = Calendar.getInstance();
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(Calendar.HOUR_OF_DAY, repo.getHour());
+//        calendar.set(Calendar.MINUTE, repo.getMinutes());
+//
+//        if (calendar.getTimeInMillis() <= now.getTimeInMillis()) {
+//            calendar.setTimeInMillis(calendar.getTimeInMillis()+24*60*60*1000);
+//            long remainTime=calendar.getTimeInMillis()-now.getTimeInMillis();
+//            long hour = remainTime/(60*60*1000);
+//            Toast.makeText(context,String.valueOf(hour)+"시간 남음",Toast.LENGTH_SHORT).show();
+//        } else {
+//        }
+//
+//        AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+////            manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+1000, pendingIntent);
+//        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            manager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+//        } else {
+//            manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+//        }
+//
+//    }
+
+    public static void addAlarm(Context context, int id) {
+        Realm mRealm = Realm.getDefaultInstance();
+        Repo repo = mRealm.where(Repo.class).equalTo("_id", id).findFirst();
+        Log.i("myBoot", String.valueOf(repo.get_id()));
         Intent alarmIntent = new Intent(context, AlarmReceiver.class);
-        alarmIntent.putExtra("alarm", repo);
+        alarmIntent.putExtra("alarm", repo.get_id());
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, repo.get_id(), alarmIntent, 0);
 
         Calendar now = Calendar.getInstance();
@@ -68,10 +104,10 @@ public class AlarmUtils {
         calendar.set(Calendar.MINUTE, repo.getMinutes());
 
         if (calendar.getTimeInMillis() <= now.getTimeInMillis()) {
-            calendar.setTimeInMillis(calendar.getTimeInMillis()+24*60*60*1000);
-            long remainTime=calendar.getTimeInMillis()-now.getTimeInMillis();
-            long hour = remainTime/(60*60*1000);
-            Toast.makeText(context,String.valueOf(hour)+"시간 남음",Toast.LENGTH_SHORT).show();
+            calendar.setTimeInMillis(calendar.getTimeInMillis() + 24 * 60 * 60 * 1000);
+            long remainTime = calendar.getTimeInMillis() - now.getTimeInMillis();
+            long hour = remainTime / (60 * 60 * 1000);
+            Toast.makeText(context, String.valueOf(hour) + "시간 남음", Toast.LENGTH_SHORT).show();
         } else {
         }
 
@@ -86,4 +122,5 @@ public class AlarmUtils {
         }
 
     }
+
 }

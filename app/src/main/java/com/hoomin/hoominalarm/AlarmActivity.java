@@ -9,6 +9,7 @@ import android.os.Vibrator;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 
 public class AlarmActivity extends AppCompatActivity {
     @BindView(R.id.ibtn_cancle)
@@ -29,28 +31,36 @@ public class AlarmActivity extends AppCompatActivity {
     Bundle bundle;
     Vibrator vibrator;
     Repo repo;
+    int vibrate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
         ButterKnife.bind(this);
-        repo = (Repo) getIntent().getSerializableExtra("alarm");
 
+        int id = getIntent().getIntExtra("alarm",0);
+        Log.i("id", String.valueOf(id));
+        Realm mRealm = Realm.getDefaultInstance();
+        Repo repo = mRealm.where(Repo.class).equalTo("_id", id).findFirst();
+        Log.i("repo", String.valueOf(repo.getMinutes()));
+        Log.i("myBoot", String.valueOf(repo.getVibrate())+"진동");
+        vibrate = repo.getVibrate();
         vibrator =(Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-        startAlarm();
+
+        startAlarm(vibrate);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopAlarm();
+                stopAlarm(vibrate);
                 finish();
             }
         });
         tv_time.setText(repo.getHour() +" : "+repo.getMinutes());
 
     }
-    private void startAlarm(){
-        if(repo.getVibrate()==1){
+    private void startAlarm(int vibrate){
+        if(vibrate==1){
             vibrator.vibrate(2000);
         }else {
             //볼륨 조절 가능하게
@@ -63,8 +73,8 @@ public class AlarmActivity extends AppCompatActivity {
             mp.start();
         }
     }
-    private void stopAlarm(){
-        if(repo.getVibrate()==0){
+    private void stopAlarm(int vibrate){
+        if(vibrate==0){
             if(mp!=null) {
                 mp.stop();
                 mp.release();
@@ -77,6 +87,6 @@ public class AlarmActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopAlarm();
+        stopAlarm(vibrate);
     }
 }

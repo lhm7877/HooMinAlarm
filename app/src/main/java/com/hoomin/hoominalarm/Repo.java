@@ -1,5 +1,8 @@
 package com.hoomin.hoominalarm;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
 import io.realm.RealmObject;
@@ -9,7 +12,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by Hoo on 2017-01-27.
  */
 
-public class Repo extends RealmObject implements Serializable {
+public class Repo extends RealmObject{
 
     @PrimaryKey
     private int _id;
@@ -75,4 +78,5 @@ public class Repo extends RealmObject implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
+
 }
