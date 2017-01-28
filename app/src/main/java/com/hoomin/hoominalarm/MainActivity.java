@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView.Adapter rv_adapter;
     private RecyclerView.LayoutManager rv_layoutManager;
-    private ArrayList<RVData> rvDatas;
 
     private Realm mRealm;
     @Override
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         mRealm = Realm.getDefaultInstance();
 
         initData();
-        Log.i("cycle","onCreate");
     }
 
     @Override
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         mResults.addChangeListener(new RealmChangeListener<RealmResults<Repo>>() {
             @Override
             public void onChange(RealmResults<Repo> element) {
-                rv_adapter.notifyDataSetChanged();
+                    rv_adapter.notifyDataSetChanged();
             }
         });
     }
@@ -92,5 +92,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO : setHasStableIds 뜻?
         rv_adapter.setHasStableIds(true);
         rv_main.setAdapter(rv_adapter);
+        rv_main.addItemDecoration(new DividerItemDecoration(rv_main.getContext(),
+                DividerItemDecoration.VERTICAL));
     }
 }

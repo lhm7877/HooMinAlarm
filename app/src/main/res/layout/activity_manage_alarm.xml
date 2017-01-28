@@ -28,9 +28,15 @@
             android:layout_height="20dp"
             android:textSize="15sp"/>
     </LinearLayout>
+    <Button
+        android:text="진동"
+        android:id="@+id/brn_vibrate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="50dp">
         <Button
             android:id="@+id/btn_accept"
             android:layout_width="wrap_content"

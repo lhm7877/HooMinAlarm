@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="80dp"
     android:id="@+id/item_linearLayouot">
+
     <TextView
+        android:layout_gravity="center_vertical"
         android:id="@+id/item_tv_time"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"/>
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"/>
+    <TextView
+        android:id="@+id/tv_dayOfWeek"
+        android:textSize="10sp"
+        android:layout_gravity="center_vertical"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content" />
+    <ImageButton
+        android:id="@+id/ibtn_delete"
+        android:background="@drawable/delete"
+        android:layout_gravity="center_vertical"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
 </LinearLayout>

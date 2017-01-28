@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_alarm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.hoomin.hoominalarm.AlarmActivity"
+    android:background="@android:color/background_dark">
+
+    <ImageButton
+        android:id="@+id/ibtn_cancle"
+        android:src="@drawable/cancel"
+        android:layout_height="50dp"
+        android:layout_width="50dp"
+        android:background="#00ffffff"
+        android:scaleType="fitXY"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="96dp" />
+
+    <TextView
+        android:text="알람"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="44dp"
+        android:layout_above="@+id/tv_time" />
+    <TextView
+        android:textSize="50sp"
+        android:textColor="#ffffff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_time"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

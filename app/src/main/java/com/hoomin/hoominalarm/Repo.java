@@ -1,5 +1,7 @@
 package com.hoomin.hoominalarm;
 
+import java.io.Serializable;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -7,7 +9,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by Hoo on 2017-01-27.
  */
 
-public class Repo extends RealmObject {
+public class Repo extends RealmObject implements Serializable {
 
     @PrimaryKey
     private int _id;
