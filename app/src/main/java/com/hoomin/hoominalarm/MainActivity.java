@@ -27,8 +27,6 @@ import io.realm.RealmResults;
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.rv_main)
     protected RecyclerView rv_main;
-    @BindView(R.id.btn_test)
-    TextView btn_test;
 
     private RecyclerView.Adapter rv_adapter;
     private RecyclerView.LayoutManager rv_layoutManager;
@@ -40,18 +38,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        btn_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mRealm = Realm.getDefaultInstance();
-                RealmResults<Repo> mResults = mRealm.where(Repo.class).findAll();
-
-                for(int i = 0;i<mResults.size();i++){
-                    Repo repo = mResults.get(i);
-                    AlarmUtils.addAlarm(MainActivity.this,mResults.get(i).get_id());
-                }
-            }
-        });
         //TODO: setHasFixedSize 이유?
         rv_main.setHasFixedSize(true);
 
